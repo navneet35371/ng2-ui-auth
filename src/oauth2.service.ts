@@ -45,7 +45,7 @@ export class Oauth2Service implements IOauthService {
     }
 
     private exchangeForToken<T>(options: IOauth2Options, authorizationData: object, oauthData: object, userData: object) {
-        const body = { authorizationData, oauthData, userData };
+        const body = { ...authorizationData, ...oauthData, ...userData };
         const { baseUrl, withCredentials } = this.config.options;
         const { url, method = 'POST' } = options;
         const exchangeForTokenUrl = baseUrl ? joinUrl(baseUrl, url) : url;
